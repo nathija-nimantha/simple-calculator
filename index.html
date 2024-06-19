@@ -8,18 +8,24 @@
     <script src="https://kit.fontawesome.com/1451341d77.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <table>
+    <table style="width: 200px; margin: auto">
         <tr>
-            <td>
-                <h1 id="fNum"></h1>
-                <h1 id="lblOperator"></h1>
-                <h1 id="sNum"></h1>
-                <hr>
-                <h1 id="lblOutput"></h1>
-            </td>
+            <td colspan="4"><h1 id="fNum"></h1></td>
+        </tr>
+        <tr>
+            <td colspan="4"><h1 id="lblOperator"></h1></td>
+        </tr>
+        <tr>
+            <td colspan="4"><h1 id="sNum"></h1></td>
+        </tr>
+        <tr>
+            <td colspan="4"><hr></td>
+        </tr>
+        <tr>
+            <td colspan="4"><h1 id="lblOutput"></h1></td>
         </tr>
     </table>
-    <table>
+    <table style="width: 200px; margin: auto">
         <tr>
             <td><input type="button" value="7" id="btn7"></td>
             <td><input type="button" value="8" id="btn8"></td>
@@ -36,13 +42,16 @@
             <td><input type="button" value="1" id="btn1"></td>
             <td><input type="button" value="2" id="btn2"></td>
             <td><input type="button" value="3" id="btn3"></td>
+            <td><input type="button" value="-" id="btnSub"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" id="btn0"></td>
+            <td><input type="button" value="." id="btnDot"></td>
+            <td><input type="button" value="=" id="btnCalc"></td>
             <td><input type="button" value="+" id="btnAdd"></td>
         </tr>
         <tr>
-            <td><button id="btnDel"><i class="fa-solid fa-xmark"></i></button></td>
-            <td><input type="button" value="0" id="btn0"></td>
-            <td><input type="button" value="=" id="btnCalc"></td>
-            <td><input type="button" value="-" id="btnSub"></td>
+            <td colspan="4"><input type="button" value="C" id="btnDel"></td>
         </tr>
     </table>
     

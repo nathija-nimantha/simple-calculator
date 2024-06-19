@@ -70,3 +70,4 @@ document.getElementById('btnMul').addEventListener('click', () => operatorButton
 document.getElementById('btnDiv').addEventListener('click', () => operatorButtonClick('/'));
 document.getElementById('btnCalc').addEventListener('click', calculate);
 document.getElementById('btnDel').addEventListener('click', clearAll);
+document.getElementById('btnDot').addEventListener('click', () => numberButtonClick('.'));
