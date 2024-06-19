@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let fNum = '';
     let sNum = '';
     let operator = '';
@@ -123,28 +123,25 @@ document.addEventListener('DOMContentLoaded', function() {
         if (fNum && sNum && operator) {
             const num1 = parseFloat(fNum);
             const num2 = parseFloat(sNum);
-            let result;
+            let tempResult;
             switch (operator) {
                 case '+':
-                    result = num1 + num2;
+                    tempResult = num1 + num2;
                     break;
                 case '-':
-                    result = num1 - num2;
+                    tempResult = num1 - num2;
                     break;
                 case '*':
-                    result = num1 * num2;
+                    tempResult = num1 * num2;
                     break;
                 case '/':
-                    result = num1 / num2;
+                    tempResult = num1 / num2;
                     break;
                 default:
                     return;
             }
-            fNum = String(result);
-            sNum = '';
-            operator = '';
+            display.output.innerHTML = tempResult;
             resultDisplayed = true;
-            updateDisplay();
         }
     }
 
@@ -152,16 +149,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('btnCE').onclick = clearEntry;
     document.getElementById('btnC').onclick = clearAll;
     document.getElementById('btnDel').onclick = deleteLast;
-    document.getElementById('btnDiv').onclick = function() { inputOperator('/'); };
-    document.getElementById('btnMul').onclick = function() { inputOperator('*'); };
-    document.getElementById('btnSub').onclick = function() { inputOperator('-'); };
+    document.getElementById('btnDiv').onclick = function () { inputOperator('/'); };
+    document.getElementById('btnMul').onclick = function () { inputOperator('*'); };
+    document.getElementById('btnSub').onclick = function () { inputOperator('-'); };
     document.getElementById('btnPlusMinus').onclick = toggleSign;
-    document.getElementById('btnCalc').onclick = calculate;
-
+    
     const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    digits.forEach(function(digit) {
-        document.getElementById('btn' + digit).onclick = function() { inputDigit(digit); };
+    digits.forEach(function (digit) {
+        document.getElementById('btn' + digit).onclick = function () { inputDigit(digit); };
     });
 
     document.getElementById('btnDot').onclick = inputDot;
+
+    document.getElementById('btnCalc').onclick = function () {
+        calculate();
+    };
 });
