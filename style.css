@@ -27,6 +27,13 @@ input[type="button"], button {
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;45
 }
+input[type="button"]:hover {
+    background-color: #e0e0e0;
+}
+input[type="button"]:active {
+    box-shadow: 0 1px #666;
+    transform: translateY(2px);
+}
 
 #btnDel {
     grid-column: span 2;
