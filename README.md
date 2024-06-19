@@ -26,7 +26,7 @@ This is a simple calculator application built using HTML, CSS, and JavaScript. I
 
 ## Try It Out
 
-You can try out the calculator by visiting the [Simple Calculator](https://your-username.github.io/Simple-calculator/) website.
+You can try out the calculator by visiting the [Simple Calculator](https://nathija-nimantha.github.io/simple-calculator) website.
 
 ## License
 
