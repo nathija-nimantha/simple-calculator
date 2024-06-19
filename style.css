@@ -15,17 +15,17 @@ td {
     padding: 0;
 }
 input[type="button"], button {
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     font-size: 20px;
-    margin: 1px;
+    margin: 5px;
     padding: 1px;
     background-color: #ffffff;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 3px #999;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;45
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 input[type="button"]:hover {
     background-color: #e0e0e0;
@@ -37,7 +37,7 @@ input[type="button"]:active {
 
 #btnDel {
     grid-column: span 2;
-    width: 366px;
+    width: 250px;
     background-color: #ff6666;
     border: none;
     color: white;

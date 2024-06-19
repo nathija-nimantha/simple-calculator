@@ -29,21 +29,23 @@ function operatorButtonClick(value) {
 function calculate() {
     let num1 = parseFloat(firstNumber);
     let num2 = parseFloat(secondNumber);
+    let rawResult;
 
     if (operator === '+') {
-        result = num1 + num2;
+        rawResult = num1 + num2;
     } else if (operator === '-') {
-        result = num1 - num2;
+        rawResult = num1 - num2;
     } else if (operator === '*') {
-        result = num1 * num2;
+        rawResult = num1 * num2;
     } else if (operator === '/') {
         if (num2 !== 0) {
-            result = num1 / num2;
+            rawResult = num1 / num2;
         } else {
             result = 'Error';
+            updateDisplay();
+            return;
         }
     }
-    updateDisplay();
 }
 
 function clearAll() {
