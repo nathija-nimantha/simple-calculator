@@ -2,7 +2,7 @@
 
 This is a simple calculator application built using HTML, CSS, and JavaScript. It provides basic arithmetic operations such as addition, subtraction, multiplication, and division, along with percentage and decimal functionalities.
 
-![Calculator Screenshot](img/screenshot.png)
+![Calculator Screenshot](screenshot.png)
 
 ## Features
 
@@ -24,10 +24,10 @@ This is a simple calculator application built using HTML, CSS, and JavaScript. I
    - `±`: Toggles the sign of the current number.
 5. **Equals (=)**: Clicking on the equals button calculates and displays the result in the output screen (`lblOutput`).
 
-## Development
+## Try It Out
 
-Clone the repository and open `index.html` in your browser to view and use the calculator locally.
+You can try out the calculator by visiting the [Simple Calculator](https://your-username.github.io/Simple-calculator/) website.
 
-```bash
-git clone https://nathija-nimantha.github.io/simple-calculator
-cd Simple-calculator
+## License
+
+This project is currently not licensed. All rights reserved.
