@@ -1,75 +1,167 @@
-let firstNumber = '';
-let secondNumber = '';
-let operator = '';
-let result = '';
+document.addEventListener('DOMContentLoaded', function() {
+    let fNum = '';
+    let sNum = '';
+    let operator = '';
+    let resultDisplayed = false;
 
-function updateDisplay() {
-    document.getElementById('fNum').innerText = firstNumber;
-    document.getElementById('lblOperator').innerText = operator;
-    document.getElementById('sNum').innerText = secondNumber;
-    document.getElementById('lblOutput').innerText = result;
-}
+    const display = {
+        fNum: document.getElementById('fNum'),
+        sNum: document.getElementById('sNum'),
+        operator: document.getElementById('lblOperator'),
+        output: document.getElementById('lblOutput')
+    };
 
-function numberButtonClick(value) {
-    if (operator) {
-        secondNumber += value;
-    } else {
-        firstNumber += value;
-    }
-    updateDisplay();
-}
-
-function operatorButtonClick(value) {
-    if (firstNumber && !secondNumber) {
-        operator = value;
-    }
-    updateDisplay();
-}
-
-function calculate() {
-    let num1 = parseFloat(firstNumber);
-    let num2 = parseFloat(secondNumber);
-    let rawResult;
-
-    if (operator === '+') {
-        rawResult = num1 + num2;
-    } else if (operator === '-') {
-        rawResult = num1 - num2;
-    } else if (operator === '*') {
-        rawResult = num1 * num2;
-    } else if (operator === '/') {
-        if (num2 !== 0) {
-            rawResult = num1 / num2;
+    function updateDisplay() {
+        display.fNum.innerHTML = fNum;
+        display.sNum.innerHTML = sNum;
+        display.operator.innerHTML = operator;
+        if (resultDisplayed) {
+            display.output.innerHTML = fNum;
         } else {
-            result = 'Error';
-            updateDisplay();
-            return;
+            display.output.innerHTML = '';
         }
     }
-}
 
-function clearAll() {
-    firstNumber = '';
-    secondNumber = '';
-    operator = '';
-    result = '';
-    updateDisplay();
-}
+    function clearAll() {
+        fNum = '';
+        sNum = '';
+        operator = '';
+        resultDisplayed = false;
+        updateDisplay();
+    }
 
-document.getElementById('btn0').addEventListener('click', () => numberButtonClick('0'));
-document.getElementById('btn1').addEventListener('click', () => numberButtonClick('1'));
-document.getElementById('btn2').addEventListener('click', () => numberButtonClick('2'));
-document.getElementById('btn3').addEventListener('click', () => numberButtonClick('3'));
-document.getElementById('btn4').addEventListener('click', () => numberButtonClick('4'));
-document.getElementById('btn5').addEventListener('click', () => numberButtonClick('5'));
-document.getElementById('btn6').addEventListener('click', () => numberButtonClick('6'));
-document.getElementById('btn7').addEventListener('click', () => numberButtonClick('7'));
-document.getElementById('btn8').addEventListener('click', () => numberButtonClick('8'));
-document.getElementById('btn9').addEventListener('click', () => numberButtonClick('9'));
-document.getElementById('btnAdd').addEventListener('click', () => operatorButtonClick('+'));
-document.getElementById('btnSub').addEventListener('click', () => operatorButtonClick('-'));
-document.getElementById('btnMul').addEventListener('click', () => operatorButtonClick('*'));
-document.getElementById('btnDiv').addEventListener('click', () => operatorButtonClick('/'));
-document.getElementById('btnCalc').addEventListener('click', calculate);
-document.getElementById('btnDel').addEventListener('click', clearAll);
-document.getElementById('btnDot').addEventListener('click', () => numberButtonClick('.'));
+    function clearEntry() {
+        if (!resultDisplayed) {
+            if (sNum) {
+                sNum = '';
+            } else if (operator) {
+                operator = '';
+            } else if (fNum) {
+                fNum = '';
+            }
+        }
+        updateDisplay();
+    }
+
+    function deleteLast() {
+        if (resultDisplayed) return;
+        if (sNum) {
+            sNum = sNum.slice(0, -1);
+        } else if (operator) {
+            operator = '';
+        } else if (fNum) {
+            fNum = fNum.slice(0, -1);
+        }
+        updateDisplay();
+    }
+
+    function inputDigit(digit) {
+        if (resultDisplayed) {
+            clearAll();
+            resultDisplayed = false;
+        }
+        if (operator) {
+            sNum += digit;
+        } else {
+            fNum += digit;
+        }
+        updateDisplay();
+    }
+
+    function inputDot() {
+        if (resultDisplayed) {
+            clearAll();
+            resultDisplayed = false;
+        }
+        if (operator) {
+            if (!sNum.includes('.')) {
+                sNum += '.';
+            }
+        } else {
+            if (!fNum.includes('.')) {
+                fNum += '.';
+            }
+        }
+        updateDisplay();
+    }
+
+    function inputOperator(op) {
+        if (resultDisplayed) {
+            sNum = '';
+            resultDisplayed = false;
+        }
+        if (fNum && !sNum) {
+            operator = op;
+        } else if (fNum && sNum) {
+            calculate();
+            operator = op;
+        }
+        updateDisplay();
+    }
+
+    function toggleSign() {
+        if (resultDisplayed) return;
+        if (sNum) {
+            sNum = String(-parseFloat(sNum));
+        } else if (fNum) {
+            fNum = String(-parseFloat(fNum));
+        }
+        updateDisplay();
+    }
+
+    function inputPercent() {
+        if (resultDisplayed) return;
+        if (sNum) {
+            sNum = String(parseFloat(sNum) / 100);
+        } else if (fNum) {
+            fNum = String(parseFloat(fNum) / 100);
+        }
+        updateDisplay();
+    }
+
+    function calculate() {
+        if (fNum && sNum && operator) {
+            const num1 = parseFloat(fNum);
+            const num2 = parseFloat(sNum);
+            let result;
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    return;
+            }
+            fNum = String(result);
+            sNum = '';
+            operator = '';
+            resultDisplayed = true;
+            updateDisplay();
+        }
+    }
+
+    document.getElementById('btnPercent').onclick = inputPercent;
+    document.getElementById('btnCE').onclick = clearEntry;
+    document.getElementById('btnC').onclick = clearAll;
+    document.getElementById('btnDel').onclick = deleteLast;
+    document.getElementById('btnDiv').onclick = function() { inputOperator('/'); };
+    document.getElementById('btnMul').onclick = function() { inputOperator('*'); };
+    document.getElementById('btnSub').onclick = function() { inputOperator('-'); };
+    document.getElementById('btnPlusMinus').onclick = toggleSign;
+    document.getElementById('btnCalc').onclick = calculate;
+
+    const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    digits.forEach(function(digit) {
+        document.getElementById('btn' + digit).onclick = function() { inputDigit(digit); };
+    });
+
+    document.getElementById('btnDot').onclick = inputDot;
+});
